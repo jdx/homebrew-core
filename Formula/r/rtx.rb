@@ -26,11 +26,13 @@ class Rtx < Formula
   def install
     system "cargo", "install", "--features=brew", *std_cargo_args
     man1.install "man/man1/rtx.1"
+    mkdir_p share/"fish/vendor_conf.d"
+    share.install "share/fish/vendor_conf.d/rtx-activate.fish" => "fish/vendor_conf.d/rtx-activate.fish"
     generate_completions_from_executable(bin/"rtx", "completion")
   end
 
   test do
-    system "#{bin}/rtx", "install", "nodejs@18.13.0"
-    assert_match "v18.13.0", shell_output("#{bin}/rtx exec nodejs@18.13.0 -- node -v")
+    system "#{bin}/rtx", "install", "nodejs@20.10.0"
+    assert_match "v20.10.0", shell_output("#{bin}/rtx exec nodejs@20.10.0 -- node -v")
   end
 end
