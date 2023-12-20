@@ -37,6 +37,7 @@ class PostgresqlAT16 < Formula
   depends_on "lz4"
   depends_on "openssl@3"
   depends_on "readline"
+  depends_on "zstd"
 
   uses_from_macos "libxml2"
   uses_from_macos "libxslt"
@@ -76,6 +77,7 @@ class PostgresqlAT16 < Formula
       --with-libxml
       --with-libxslt
       --with-lz4
+      --with-zstd
       --with-openssl
       --with-pam
       --with-perl
