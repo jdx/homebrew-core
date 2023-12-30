@@ -1,8 +1,8 @@
 class SuiteSparse < Formula
   desc "Suite of Sparse Matrix Software"
   homepage "https://people.engr.tamu.edu/davis/suitesparse.html"
-  url "https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v7.3.1.tar.gz"
-  sha256 "b512484396a80750acf3082adc1807ba0aabb103c2e09be5691f46f14d0a9718"
+  url "https://github.com/DrTimothyAldenDavis/SuiteSparse/archive/refs/tags/v7.4.0.tar.gz"
+  sha256 "f9a5cc2316a967198463198f7bf10fb8c4332de6189b0e405419a7092bc921b7"
   license all_of: [
     "BSD-3-Clause",
     "LGPL-2.1-or-later",
@@ -28,42 +28,42 @@ class SuiteSparse < Formula
   end
 
   depends_on "cmake" => :build
+  depends_on "gcc" # for gfortran
+  depends_on "gmp"
   depends_on "metis"
-  depends_on "openblas"
+  depends_on "mpfr"
 
   uses_from_macos "m4"
+
+  on_macos do
+    depends_on "libomp"
+  end
+
+  on_linux do
+    depends_on "openblas"
+  end
 
   conflicts_with "mongoose", because: "suite-sparse vendors libmongoose.dylib"
 
   def install
-    # Force cmake to use our compiler shims
+    # Avoid references to Homebrew shims
     if OS.mac?
       inreplace "GraphBLAS/cmake_modules/GraphBLAS_JIT_configure.cmake",
-          "GB_C_COMPILER  \"${CMAKE_C_COMPILER}\"", "GB_C_COMPILER \"#{ENV.cc}\""
+          "C_COMPILER_BINARY \"${CMAKE_C_COMPILER}\"", "C_COMPILER_BINARY \"#{ENV.cc}\""
     end
 
-    cmake_args = *std_cmake_args, "-DCMAKE_INSTALL_RPATH=#{rpath}"
-    args = [
-      "INSTALL=#{prefix}",
-      "BLAS=-L#{Formula["openblas"].opt_lib} -lopenblas",
-      "LAPACK=$(BLAS)",
-      "MY_METIS_LIB=-L#{Formula["metis"].opt_lib} -lmetis",
-      "MY_METIS_INC=#{Formula["metis"].opt_include}",
-      "CMAKE_OPTIONS=#{cmake_args.join(" ")}",
-      "JOBS=#{ENV.make_jobs}",
-    ]
+    system "cmake", "-S", ".", "-B", "build", "-DCMAKE_INSTALL_RPATH=#{rpath}",
+                                              *std_cmake_args
+    system "cmake", "--build", "build"
+    system "cmake", "--install", "build"
 
-    # Parallelism is managed through the `JOBS` make variable and not with `-j`.
-    ENV.deparallelize
-    system "make", "library", *args
-    system "make", "install", *args
-    lib.install Dir["**/*.a"]
     pkgshare.install "KLU/Demo/klu_simple.c"
   end
 
   test do
     system ENV.cc, "-o", "test", pkgshare/"klu_simple.c",
-           "-L#{lib}", "-lsuitesparseconfig", "-lklu"
+                   "-I#{include}/suitesparse", "-L#{lib}",
+                   "-lsuitesparseconfig", "-lklu"
     assert_predicate testpath/"test", :exist?
     assert_match "x [0] = 1", shell_output("./test")
   end
