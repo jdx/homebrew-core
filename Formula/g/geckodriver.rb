@@ -35,15 +35,13 @@ class Geckodriver < Formula
   end
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "fd78430189604f5c19a453a34ba41607c126d4de8c9973eafa16b2926c60e91d"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "58e395855e57f06d764c3def6d6d097258e02635a71ab3966192738cc5eecffa"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "4cf155d33ba2b30186ed870e1413e37b6074d28053439d9072170f109328fcb7"
-    sha256 cellar: :any_skip_relocation, arm64_big_sur:  "68f157c4a44d2015c691e83162c2f99616b806787059f89efa576b95cff83301"
-    sha256 cellar: :any_skip_relocation, sonoma:         "8dc3ca9568521dca4942e298c3e6345a33be01c9fb01ade0b924c60d9db56e50"
-    sha256 cellar: :any_skip_relocation, ventura:        "0f8893249096660b0a31c030e402fd19971a41445e0a6b2435c27672c604d510"
-    sha256 cellar: :any_skip_relocation, monterey:       "a38132365353a169d06c78d167aec5cd2d366e7300302f516aa3c1205eab1cf3"
-    sha256 cellar: :any_skip_relocation, big_sur:        "520359529fe9f90c5fb182acf27421c39603bf7f43756ada27632e34c90538e2"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "193f488a95a9ac7ec532f3284a619173208fc26da0fe2bd5140a5bdf418c6aff"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "1885b9935410051ef03a37966cd99709ac7136ade7ddc9603d985e8dd928d9b4"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "134409c16526edfc09a1dad7ab231f3c2bee371bbcf54ba105d4bc76acab0d00"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "73f5a089e7419f0eed816a4a083239ba5ee8ebb8be63ccec96d400db0f29f55f"
+    sha256 cellar: :any_skip_relocation, sonoma:         "7f3204723ca99bc6a88af19d5ccad0c26aa3f1743cedc09762b54cad4481ee51"
+    sha256 cellar: :any_skip_relocation, ventura:        "dfa295ea1696bdaaf598759440224dc336f9bba371efda80b0d8791b339816d2"
+    sha256 cellar: :any_skip_relocation, monterey:       "ff3d2092d930ebae80cde07b8ad67cd7bed2dab24baff4f353461e24d4fa7a67"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "01a0c5687b091d35676a7d803e9330db700578314fbf422ba95e059eb521bea0"
   end
 
   depends_on "rust" => :build
