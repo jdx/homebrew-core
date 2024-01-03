@@ -6,6 +6,7 @@ class Mailpit < Formula
   url "https://github.com/axllent/mailpit/archive/refs/tags/v1.12.1.tar.gz"
   sha256 "826bbd4bfa492b06568465c157b135df01c2b634fd7ed16bca8958c569aff153"
   license "MIT"
+  revision 1
 
   bottle do
     sha256 cellar: :any_skip_relocation, arm64_sonoma:   "742e3c5ec4e28acccda8fc1a95a37caf494dc3d274f9410e600c3ef15c0d56c3"
@@ -23,7 +24,7 @@ class Mailpit < Formula
   def install
     system "npm", "install", *Language::Node.local_npm_install_args
     system "npm", "run", "build"
-    ldflags = "-s -w -X github.com/axllent/mailpit/config.Version=#{version}"
+    ldflags = "-s -w -X github.com/axllent/mailpit/config.Version=v#{version}"
     system "go", "build", *std_go_args(ldflags: ldflags)
   end
 
@@ -40,6 +41,6 @@ class Mailpit < Formula
     output = shell_output("#{bin}/mailpit sendmail < #{testpath}/test_email.txt 2>&1", 11)
     assert_match "error parsing message body: malformed header line", output
 
-    assert_match version.to_s, shell_output("#{bin}/mailpit version")
+    assert_match "mailpit v#{version}", shell_output("#{bin}/mailpit version")
   end
 end
