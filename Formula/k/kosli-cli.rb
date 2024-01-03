@@ -7,13 +7,13 @@ class KosliCli < Formula
   head "https://github.com/kosli-dev/cli.git", branch: "main"
 
   bottle do
-    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "198a55f0f5b67f429aa8e7234bd204edf846fb3fe57517e4250e86aac8c8edaa"
-    sha256 cellar: :any_skip_relocation, arm64_ventura:  "9f772ef1d30f71567132a934d934f963ed6aea03060a949b93c76c545aaac291"
-    sha256 cellar: :any_skip_relocation, arm64_monterey: "521bebf9c22b3e3f6d3b52f309a7cf119486e7dcc3e2be58916884b7eeed4b35"
-    sha256 cellar: :any_skip_relocation, sonoma:         "2a522915f0dee48cbceac4b475b21c9b942c78bf1e89159bebdc23e2cdfe1687"
-    sha256 cellar: :any_skip_relocation, ventura:        "53c59ba102016a548713303bafd0e3da9d21ba50a5d23bb81dfe3cbaccf8045f"
-    sha256 cellar: :any_skip_relocation, monterey:       "b3029f13bc52134d834fe560f50ca70b0d037429c78526299e128ff30a709c2b"
-    sha256 cellar: :any_skip_relocation, x86_64_linux:   "5a195b0e37c84e53d68df41daf3512a737323b327e557a172412ce8822d12e70"
+    sha256 cellar: :any_skip_relocation, arm64_sonoma:   "7ab3ddc2e743f30721149f2bba9cc02b636e3a5c6860f99755b6cb6780268929"
+    sha256 cellar: :any_skip_relocation, arm64_ventura:  "8c8c123b3767020057bcb19966b8dd821ff9d08e8d4370079f96c47cf16d0a92"
+    sha256 cellar: :any_skip_relocation, arm64_monterey: "9bc4188bbe08342d72f2682c597948059e8081e92c03616d8b361d42604a293c"
+    sha256 cellar: :any_skip_relocation, sonoma:         "88f8a925683738b1e321aa13d656081e672684ebd705cd31b41aead7632b2994"
+    sha256 cellar: :any_skip_relocation, ventura:        "45060296f7b2fbd0a30c58818421914df5170ab22c2ea06538eba226f802ebe0"
+    sha256 cellar: :any_skip_relocation, monterey:       "a13269ba6abdb04eaadd08dbc31fd58ad1be9d4ed72ccff3c7ced9bd02a15b7f"
+    sha256 cellar: :any_skip_relocation, x86_64_linux:   "e274f796b0d653019b43ba7d97ec811ef396493f96cba083a5515484864a90c5"
   end
 
   depends_on "go" => :build
