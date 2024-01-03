@@ -5,6 +5,7 @@ class Snort < Formula
   mirror "https://fossies.org/linux/misc/snort3-3.1.77.0.tar.gz"
   sha256 "cb98c0d15caa7c84da24995e8521f42f4e86a860b9748418154d8649b6a0db2d"
   license "GPL-2.0-only"
+  revision 1
   head "https://github.com/snort3/snort3.git", branch: "master"
 
   # There can be a notable gap between when a version is tagged and a
