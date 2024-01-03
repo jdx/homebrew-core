@@ -23,7 +23,18 @@ class Beecrypt < Formula
   depends_on "libtool" => :build
 
   # fix build with newer clang, gcc 4.7 (https://bugs.gentoo.org/show_bug.cgi?id=413951)
-  patch :p0, :DATA
+  patch do
+    url "https://sourceforge.net/p/beecrypt/patches/_discuss/thread/93d63cef/5653/attachment/beecrypt-gcc47.patch"
+    sha256 "6cb36ae3e8e9c595420379dc535bb5451d0ee60641a38b29a20ca25c7acbc60d"
+  end
+
+  # blockmode.c:162:14: error: call to undeclared function 'swapu32';
+  # ISO C99 and later do not support implicit function declarations [-Wimplicit-function-declaration]
+  # (https://sourceforge.net/p/beecrypt/patches/13/)
+  patch do
+    url "https://sourceforge.net/p/beecrypt/patches/13/attachment/beecrypt-4.2.1-c99.patch"
+    sha256 "460f25ccd4478e5ec435dc9185b3021518d8b2d65cad2c9c1ee71be804471420"
+  end
 
   def install
     cp Dir["#{Formula["libtool"].opt_share}/libtool/*/config.{guess,sub}"], buildpath
@@ -66,16 +77,3 @@ class Beecrypt < Formula
     assert_match "FJOO", shell_output("./test")
   end
 end
-
-__END__
---- include/beecrypt/c++/util/AbstractSet.h~	2009-06-17 13:05:55.000000000 +0200
-+++ include/beecrypt/c++/util/AbstractSet.h	2012-06-03 17:45:55.229399461 +0200
-@@ -56,7 +56,7 @@
- 					if (c->size() != size())
- 						return false;
- 
--					return containsAll(*c);
-+					return this->containsAll(*c);
- 				}
- 				return false;
- 			}
