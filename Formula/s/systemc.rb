@@ -25,7 +25,7 @@ class Systemc < Formula
   depends_on "cmake" => :build
 
   def install
-    system "cmake", "-S", ".", "-B", "build", "-DCMAKE_CXX_STANDARD=11", *std_cmake_args
+    system "cmake", "-S", ".", "-B", "build", "-DCMAKE_CXX_STANDARD=17", *std_cmake_args
     system "cmake", "--build", "build"
     system "cmake", "--install", "build"
   end
@@ -38,7 +38,7 @@ class Systemc < Formula
         return 0;
       }
     EOS
-    system ENV.cxx, "-std=gnu++11", "-L#{lib}", "-lsystemc", "test.cpp"
+    system ENV.cxx, "-std=gnu++17", "-L#{lib}", "-lsystemc", "test.cpp"
     system "./a.out"
   end
 end
