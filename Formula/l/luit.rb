@@ -1,8 +1,8 @@
 class Luit < Formula
   desc "Filter run between arbitrary application and UTF-8 terminal emulator"
   homepage "https://invisible-island.net/luit/"
-  url "https://invisible-mirror.net/archives/luit/luit-20230201.tgz"
-  sha256 "ee2a8d1dbc7ee23d00c412a1f0b3d70678514d56d5be0a816dd95e232e76c56f"
+  url "https://invisible-mirror.net/archives/luit/luit-20240102.tgz"
+  sha256 "a07aea28cdcec50ef225d8c96d3944c3ef6401a913b0d78a84ddc85191ebc082"
   license "MIT"
 
   livecheck do
@@ -23,7 +23,8 @@ class Luit < Formula
   uses_from_macos "zlib"
 
   def install
-    system "./configure", "--prefix=#{prefix}", "--without-x"
+    system "./configure", "--without-x",
+                          *std_configure_args
     system "make", "install"
   end
 
