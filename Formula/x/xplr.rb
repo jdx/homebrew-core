@@ -1,8 +1,8 @@
 class Xplr < Formula
   desc "Hackable, minimal, fast TUI file explorer"
   homepage "https://github.com/sayanarijit/xplr"
-  url "https://github.com/sayanarijit/xplr/archive/refs/tags/v0.21.3.tar.gz"
-  sha256 "27800f0e731aedc194872609263e8c20b2e94b2f2e9088da5d3f501c406e938d"
+  url "https://github.com/sayanarijit/xplr/archive/refs/tags/v0.21.5.tar.gz"
+  sha256 "c6e2b800888363c6d6101eafe585723a5bf9cc304cedff77a302c0e2a6d0a151"
   license "MIT"
   head "https://github.com/sayanarijit/xplr.git", branch: "main"
 
@@ -64,7 +64,7 @@ index 48bd3e1..69cdd17 100644
 @@ -73,7 +73,7 @@ features = ['serde']
  
  [dependencies.mlua]
- version = "0.8.9"
+ version = "0.9.2"
 -features = ['luajit', 'vendored', 'serialize', 'send']
 +features = ['luajit', 'serialize', 'send']
  
