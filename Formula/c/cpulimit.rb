@@ -3,7 +3,7 @@ class Cpulimit < Formula
   homepage "https://github.com/opsengine/cpulimit"
   url "https://github.com/opsengine/cpulimit/archive/refs/tags/v0.2.tar.gz"
   sha256 "64312f9ac569ddcadb615593cd002c94b76e93a0d4625d3ce1abb49e08e2c2da"
-  license "GPL-2.0"
+  license "GPL-2.0-or-later"
   head "https://github.com/opsengine/cpulimit.git", branch: "master"
 
   bottle do
@@ -19,6 +19,14 @@ class Cpulimit < Formula
     sha256 cellar: :any_skip_relocation, sierra:         "fa5bc8d713837693c6bbd6139bec5e48b8a1d46ef669b2e042715dd1318b1655"
     sha256 cellar: :any_skip_relocation, el_capitan:     "9d7320465152a12ba75ce924beada5a3ce365b14becaa75e08ee8334c2cb2f6a"
     sha256 cellar: :any_skip_relocation, x86_64_linux:   "1e7b26fdf597d68a1f482095c11f606dc5fc6f88a27e88bf14a3e976cec0998a"
+  end
+
+  # process_group.c:64:15: error: call to undeclared function 'basename';
+  # ISO C99 and later do not support implicit function declarations
+  # (https://github.com/opsengine/cpulimit/pull/109)
+  patch do
+    url "https://github.com/opsengine/cpulimit/commit/4c1e021037550c437c7da3a276b95b5bf79e967e.patch?full_index=1"
+    sha256 "0e1cda1dfad54cefd2af2d0677c76192d5db5c18f3ee73318735b5122ccf0e34"
   end
 
   def install
