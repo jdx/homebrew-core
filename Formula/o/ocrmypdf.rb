@@ -3,8 +3,8 @@ class Ocrmypdf < Formula
 
   desc "Adds an OCR text layer to scanned PDF files"
   homepage "https://ocrmypdf.readthedocs.io/en/latest/"
-  url "https://files.pythonhosted.org/packages/a9/e4/7c86016d069b6f2d458abc5f4432cc9aa77abd2dba31e9e12dd23405018b/ocrmypdf-16.0.2.tar.gz"
-  sha256 "22aff9a734430aef1259fcad3697324b02a0147c2566b3df03d45a1d4401a0cc"
+  url "https://files.pythonhosted.org/packages/70/68/a7b58bf2c18ab98a5e53e5ddeb634b0c395fe64446a56c7b9f0a37acf029/ocrmypdf-16.0.3.tar.gz"
+  sha256 "ca89b9d9d5be6f1fd14fb22a1dafebbcd4c9f8f942faffcfbd56d1cd5dde8684"
   license "MPL-2.0"
 
   bottle do
@@ -61,8 +61,8 @@ class Ocrmypdf < Formula
   end
 
   resource "pdfminer-six" do
-    url "https://files.pythonhosted.org/packages/ac/6e/89c532d108e362cbaf76fdb972e7a5e85723c225f08e1646fb86878d4f7f/pdfminer.six-20221105.tar.gz"
-    sha256 "8448ab7b939d18b64820478ecac5394f482d7a79f5f7eaa7703c6c959c175e1d"
+    url "https://files.pythonhosted.org/packages/31/b1/a43e3bd872ded4deea4f8efc7aff1703fca8c5455d0c06e20506a06a44ff/pdfminer.six-20231228.tar.gz"
+    sha256 "6004da3ad1a7a4d45930cb950393df89b068e73be365a6ff64a838d37bcb08c4"
   end
 
   resource "pluggy" do
