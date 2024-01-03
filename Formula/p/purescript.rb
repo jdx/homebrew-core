@@ -2,8 +2,8 @@ class Purescript < Formula
   desc "Strongly typed programming language that compiles to JavaScript"
   homepage "https://www.purescript.org/"
   # TODO: Try to switch `ghc@9.2` to `ghc` when purescript.cabal allows base>=4.17
-  url "https://hackage.haskell.org/package/purescript-0.15.13/purescript-0.15.13.tar.gz"
-  sha256 "cb3e8ed2c54af63e950e784426e18a02c572bf356325f20fbff3a98df04222af"
+  url "https://hackage.haskell.org/package/purescript-0.15.14/purescript-0.15.14.tar.gz"
+  sha256 "450d8bce772ee0a3b7ded51466543649a105f4aedf2469fe1f7687233b638dd6"
   license "BSD-3-Clause"
   head "https://github.com/purescript/purescript.git", branch: "master"
 
