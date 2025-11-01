@@ -30,16 +30,30 @@ class Fnox < Formula
   test do
     assert_match "fnox #{version}", shell_output("#{bin}/fnox --version")
 
-    # Test basic functionality
+    # Generate test age key using system age-keygen
+    test_key = shell_output("age-keygen")
+    test_key_line = test_key.lines.grep(/^# public key:/).first.sub(/^# public key: /, "").strip
+    secret_key_line = test_key.lines.grep(/^AGE-SECRET-KEY-/).first.strip
+
+    # Test with age encryption
     (testpath/"fnox.toml").write <<~TOML
       [providers]
-      age = { type = "age", recipients = ["age1ql3z7hjy54pw3hyww5ayyfg7zqgvc7w3j2elw8zmrj2kg5sfn9aqmcac8p"] }
+      age = { type = "age", recipients = ["#{test_key_line}"] }
 
       [secrets]
-      TEST_SECRET = { provider = "age", value = "YWdlLWVuY3J5cHRpb24ub3JnL3YXRpb24ub3JnL3" }
+      TEST_SECRET = { provider = "age", value = "test-value" }
     TOML
 
+    # Set the secret properly so it gets encrypted
+    ENV["FNOX_AGE_KEY"] = secret_key_line
+    system bin/"fnox", "set", "TEST_SECRET", "test-value", "--provider", "age"
+
+    # Test list shows the secret
     output = shell_output("#{bin}/fnox list")
     assert_match "TEST_SECRET", output
+
+    # Test list --values shows decrypted value
+    output = shell_output("FNOX_AGE_KEY='#{secret_key_line}' #{bin}/fnox list --values")
+    assert_match "TEST_SECRET.*test-value", output
   end
 end
